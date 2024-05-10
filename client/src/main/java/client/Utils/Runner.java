@@ -28,7 +28,10 @@ public class Runner {
             put(Commands.ADD_IF_MAX.getName(), new AddIfMaxCommand(console,clientManager));
             put(Commands.ADD_IF_MIN.getName(), new AddIfMinCommand(console,clientManager));
             put(Commands.EXECUTE_SCRIPT.getName(), new ExecuteScriptCommand(console));
+            put(Commands.HELP.getName(), new HelpCommand(console,clientManager));
+            put(Commands.REMOVE_HEAD.getName(), new RemoveHeadCommand(console,clientManager));
             put(Commands.SHOW.getName(), new ShowCommand(console, clientManager));
+            put(Commands.UPDATE_BY_ID.getName(), new UpdateByIdCommand(console,clientManager));
         }};
     }
 

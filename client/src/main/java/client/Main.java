@@ -14,13 +14,11 @@ public class Main {
 
     public static void main(String[] args){
 
-
-
         String host = args[0];
         String strPort = args[1];
 
         if (host == null || strPort == null){
-            logger.log(Level.WARNING, "Неверные переменные окружения для хоста и порта");
+            logger.log(Level.WARNING, "Хост и порт не были переданы через аргумент командной строки");
             return;
         }
 

@@ -101,7 +101,7 @@ public class CollectionManager {
         List<Vehicle> vehicles = new ArrayList<>();
         Vehicle minVehicle = Collections.min(vehicles);
         if (vehicle.compareTo(minVehicle) > 0) {
-            vehicles.add(vehicle);
+            this.collection.add(minVehicle);
         }
     }
 

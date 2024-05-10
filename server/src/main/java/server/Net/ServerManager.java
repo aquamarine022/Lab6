@@ -52,8 +52,6 @@ public class ServerManager {
         try {
             request = (Request) server.getObject(socketChannel);
             Response response = commandHandler.handler(request);
-            //System.out.println(response);
-            //if(afterHook != null) afterHook.run();
             writeRes(socketChannel,response);
         }catch (IOException|ClassNotFoundException e){
             Main.logger.log(Level.WARNING, e.toString());
@@ -96,7 +94,5 @@ public class ServerManager {
             }
         }
     }
-//    public void setAfterHook(Runnable afterHook){
-//        this.afterHook = afterHook;
-//    }
+
 }

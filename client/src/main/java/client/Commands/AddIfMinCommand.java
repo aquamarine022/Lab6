@@ -37,8 +37,6 @@ public class AddIfMinCommand extends Command{
                 var response = (AddIfMinResponse) clientManager.sendAndReceiveCommand(new AddIfMinRequest(newVehicle));
                 if (response.getError() != null && !response.getError().isEmpty()) {
                     throw new APIException(response.getError());
-                } else if (!response.isAdded()) {
-                    console.printLn(response.getError());
                 }
                 console.printLn("Транспорт успешно добавлен.");
             }

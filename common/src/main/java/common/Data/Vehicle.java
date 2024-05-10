@@ -128,7 +128,7 @@ public class Vehicle implements Comparable<Vehicle>, Serializable {
 
     @Override
     public int compareTo(Vehicle o) {
-        return this.coordinates.compareTo(o.getCoordinates());
+        return this.name.compareTo(o.getName());
     }
 
     public void setCreationDate(Date date){

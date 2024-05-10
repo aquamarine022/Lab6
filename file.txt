@@ -1,1 +1,3 @@
 show
+execute_script file.
+show

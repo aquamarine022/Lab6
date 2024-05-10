@@ -1,17 +1,51 @@
 package client.Commands;
 
+import client.Exceptions.APIException;
+import client.Network.ClientManager;
+import client.Readers.VehicleReader;
+import common.Exceptions.InvalidDataException;
+import common.Network.Request.UpdateByIdRequest;
+import common.Network.Response.UpdateByIdResponse;
+import common.Utility.Console;
+
+import java.io.IOException;
+
 public class UpdateByIdCommand extends Command{
-    public UpdateByIdCommand(String name, String description) {
-        super(name, description);
+    private final Console console;
+    private final ClientManager clientManager;
+
+    public UpdateByIdCommand(Console console, ClientManager clientManager) {
+        super("update_id", "обновить значение элемента коллекции, id которого равен заданному");
+        this.console = console;
+        this.clientManager = clientManager;
+    }
+
+
+    @Override
+    public boolean validateArgs(String[] args) {
+        return args.length == 1;
     }
 
     @Override
     public void execute(String[] args) {
-
-    }
-
-    @Override
-    public boolean validateArgs(String[] args) {
-        return false;
+        try {
+            if (!validateArgs(args)) {
+                console.printError("У команды " + getName() + " не должно быть аргументов.");
+            } else {
+                long id = Long.parseLong(args[0]);
+                var updatedVehicle = (new VehicleReader()).readVehicle();
+                var response = (UpdateByIdResponse) clientManager.sendAndReceiveCommand(new UpdateByIdRequest(id, updatedVehicle));
+                if (response.getError() != null && !response.getError().isEmpty()) {
+                    throw new APIException(response.getError());
+                }
+                console.printLn("Человек с ID " + id + " успешно обновлен.");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            console.printError("при работе с сервером.");
+        } catch (APIException e) {
+            console.printError(e.getMessage());
+        } catch (InvalidDataException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -3,11 +3,8 @@ package server;
 import common.Loader;
 import common.Utility.Console;
 
-import server.Commands.Add;
-import server.Commands.Show;
-import server.Managers.CollectionManager;
-import server.Managers.CommandManager;
-import server.Managers.FileDataManager;
+import server.Commands.*;
+import server.Managers.*;
 import server.Net.Config;
 import server.Net.ServerManager;
 
@@ -25,18 +22,13 @@ public class Main {
         String host = args[1];
         String strPort = args[2];
         if((fileName == null)) {
-            System.out.println("Имя файла не было передано через аргумент командной строки");
             Main.logger.log(Level.WARNING,"Имя файла не было передано через аргумент командной строки" );
         }
 
-        System.out.println(host);
-        System.out.println(strPort);
-
         if (host == null || strPort == null){
-            logger.log(Level.WARNING, "Неверные переменные окружения для хоста и порта");
+            logger.log(Level.WARNING, "Хост и порт не были переданы через аргумент командной строки");
             return;
         }
-
 
         int port = Integer.parseInt(strPort);
         Config.setHost(host);
@@ -56,17 +48,15 @@ public class Main {
 
         collectionManager.addAll(fileDataManager.readJSON());
 
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            try {
-                fileDataManager.writeToFile(collectionManager.getCollection());
-            } catch (IOException e) {
-                logger.log(Level.WARNING, "что-то пошло не так");
-            }
-        }));
 
         CommandManager commandManager = new CommandManager();
         commandManager.createCommand(new Add(collectionManager));
+        commandManager.createCommand(new AddIfMin(collectionManager));
+        commandManager.createCommand(new RemoveHead(collectionManager));
+        commandManager.createCommand(new Help(commandManager));
         commandManager.createCommand(new Show(collectionManager));
+        commandManager.createCommand(new Update(collectionManager));
+
 
         ServerManager serverManager = new ServerManager(commandManager,fileDataManager,collectionManager, Console.getInstance());
 
@@ -77,14 +67,6 @@ public class Main {
             logger.log(Level.WARNING, "Не удалось запустить сервер");
         }
 
-//        serverManager.setAfterHook(() -> {
-//            try {
-//                fileDataManager.writeToFile(collectionManager.getCollection());
-//            } catch (IOException e) {
-//                logger.log(Level.WARNING, "что-то пошло не так");
-//            }
-//            serverManager.run();
-//        });
         serverManager.run();
     }
 }
