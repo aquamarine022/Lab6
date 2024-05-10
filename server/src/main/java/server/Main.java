@@ -56,6 +56,7 @@ public class Main {
         commandManager.createCommand(new Clear(collectionManager));
         commandManager.createCommand(new RemoveHead(collectionManager));
         commandManager.createCommand(new Help(commandManager));
+        commandManager.createCommand(new Info(collectionManager));
         commandManager.createCommand(new Show(collectionManager));
         commandManager.createCommand(new Update(collectionManager));
 

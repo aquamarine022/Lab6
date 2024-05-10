@@ -38,7 +38,7 @@ public class AddIfMinCommand extends Command{
                 if (response.getError() != null && !response.getError().isEmpty()) {
                     throw new APIException(response.getError());
                 }
-                console.printLn("Транспорт успешно добавлен.");
+
             }
         } catch (IOException | ClassNotFoundException e) {
             console.printError("при работе с сервером.");

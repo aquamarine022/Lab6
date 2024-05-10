@@ -30,7 +30,7 @@ public class UpdateByIdCommand extends Command{
     public void execute(String[] args) {
         try {
             if (!validateArgs(args)) {
-                console.printError("У команды " + getName() + " не должно быть аргументов.");
+                console.printError("У команды должен быть аргумент");
             } else {
                 long id = Long.parseLong(args[0]);
                 var updatedVehicle = (new VehicleReader()).readVehicle();
@@ -38,10 +38,10 @@ public class UpdateByIdCommand extends Command{
                 if (response.getError() != null && !response.getError().isEmpty()) {
                     throw new APIException(response.getError());
                 }
-                console.printLn("Человек с ID " + id + " успешно обновлен.");
+                console.printLn("Транспорт успешно обновлен");
             }
         } catch (IOException | ClassNotFoundException e) {
-            console.printError("при работе с сервером.");
+            console.printError("server error");
         } catch (APIException e) {
             console.printError(e.getMessage());
         } catch (InvalidDataException e) {

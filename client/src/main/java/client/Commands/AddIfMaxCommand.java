@@ -39,7 +39,7 @@ public class AddIfMaxCommand extends Command{
                 if (response.getError() != null && !response.getError().isEmpty()) {
                     throw new APIException(response.getError());
                 }
-                console.printLn("Транспорт успешно добавлен.");
+
             }
         }
         catch (IOException | ClassNotFoundException e) {

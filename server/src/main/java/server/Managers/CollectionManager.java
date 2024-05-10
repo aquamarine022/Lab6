@@ -6,9 +6,11 @@ import common.Data.*;
 import static common.Constants.formatter;
 import common.Validators.Validators;
 import common.Exceptions.InvalidDataException;
+import server.Main;
 
 import java.time.Instant;
 import java.util.*;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 
@@ -16,6 +18,7 @@ public class CollectionManager {
     private ArrayDeque<Vehicle> collection = new ArrayDeque<>();
 
     private final Date creationDate;
+
 
     public CollectionManager(){
         this.creationDate = new Date();
@@ -95,6 +98,9 @@ public class CollectionManager {
         if (o.isEmpty() || o.get().compareTo(vehicle) < 0) {
             vehicle.setId(this.generateId());
             this.collection.add(vehicle);
+            Main.logger.log(Level.INFO, "максимальный транспорт добавлен");
+        }else {
+            Main.logger.log(Level.INFO, "это не максимальный транспорт");
         }
     }
 
@@ -105,6 +111,9 @@ public class CollectionManager {
         if (o.isEmpty() || o.get().compareTo(vehicle) > 0) {
             vehicle.setId(this.generateId());
             this.collection.add(vehicle);
+            Main.logger.log(Level.INFO, "минимальный транспорт добавлен");
+        }else {
+            Main.logger.log(Level.INFO, "это не минимальный транспорт");
         }
     }
 

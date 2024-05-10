@@ -30,6 +30,7 @@ public class Runner {
             put(Commands.CLEAR.getName(), new ClearCommand(console,clientManager));
             put(Commands.EXECUTE_SCRIPT.getName(), new ExecuteScriptCommand(console));
             put(Commands.HELP.getName(), new HelpCommand(console,clientManager));
+            put(Commands.INFO.getName(), new InfoCommand(console,clientManager));
             put(Commands.REMOVE_HEAD.getName(), new RemoveHeadCommand(console,clientManager));
             put(Commands.SHOW.getName(), new ShowCommand(console, clientManager));
             put(Commands.UPDATE_BY_ID.getName(), new UpdateByIdCommand(console,clientManager));
