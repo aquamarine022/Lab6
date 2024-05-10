@@ -34,7 +34,8 @@ public class AddIfMaxCommand extends Command{
                 console.printError("У комманды " + getName() + " не должно быть аргументов");
             }else {
                 var newVehicle = (new VehicleReader()).readVehicle();
-                var response = (AddIfMaxResponse) clientManager.sendAndReceiveCommand(new AddIfMaxRequest(newVehicle));
+                var response = (AddIfMaxResponse) clientManager.sendAndReceiveCommand(
+                        new AddIfMaxRequest(newVehicle));
                 if (response.getError() != null && !response.getError().isEmpty()) {
                     throw new APIException(response.getError());
                 }

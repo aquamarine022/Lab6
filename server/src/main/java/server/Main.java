@@ -51,7 +51,9 @@ public class Main {
 
         CommandManager commandManager = new CommandManager();
         commandManager.createCommand(new Add(collectionManager));
+        commandManager.createCommand(new AddIfMax(collectionManager));
         commandManager.createCommand(new AddIfMin(collectionManager));
+        commandManager.createCommand(new Clear(collectionManager));
         commandManager.createCommand(new RemoveHead(collectionManager));
         commandManager.createCommand(new Help(commandManager));
         commandManager.createCommand(new Show(collectionManager));

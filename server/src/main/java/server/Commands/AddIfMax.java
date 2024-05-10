@@ -3,6 +3,7 @@ package server.Commands;
 import common.Network.Request.AddIfMaxRequest;
 import common.Network.Request.AddIfMinRequest;
 import common.Network.Request.Request;
+import common.Network.Response.AddIfMaxResponse;
 import common.Network.Response.AddIfMinResponse;
 import common.Network.Response.Response;
 import server.Managers.CollectionManager;
@@ -18,8 +19,8 @@ public class AddIfMax extends Command{
     public Response execute(Request request){
         try {
             var req = (AddIfMaxRequest) request;
-            collectionManager.addIfMin(req.getVehicle());
-            return new AddIfMinResponse(null);
+            collectionManager.addIfMax(req.getVehicle());
+            return new AddIfMaxResponse(null);
         }catch (Exception e){
             return new AddIfMinResponse(e.toString());
         }

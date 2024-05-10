@@ -77,7 +77,7 @@ public class ServerManager {
                     }else if (input.equals("exit")){
                         fileDataManager.writeToFile(collectionManager.getCollection());
                         Main.logger.log(Level.INFO, "Коллекция успешно сохранена");
-                        System.exit(1);
+                        System.exit(0);
                     }else {
                         Main.logger.log(Level.WARNING, "Неизвестная команда");
                     }

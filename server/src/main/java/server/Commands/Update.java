@@ -10,7 +10,7 @@ public class Update extends Command{
     private final CollectionManager collectionManager;
 
     public Update(CollectionManager collectionManager) {
-        super("update_id", "обновить значение элемента коллекции, id которого равен заданному");
+        super("update_by_id", "обновить значение элемента коллекции, id которого равен заданному");
         this.collectionManager = collectionManager;
     }
 

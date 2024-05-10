@@ -72,7 +72,6 @@ public class CollectionManager {
     public void update(long id, Vehicle newVehicle){
         removeById(id);
         newVehicle.setId(id);
-        newVehicle.setCreationDate(Date.from(Instant.now()));
         collection.add(newVehicle);
     }
 
@@ -90,18 +89,22 @@ public class CollectionManager {
     }
 
     public void addIfMax(Vehicle vehicle) {
-        List<Vehicle> vehicles = new ArrayList<>();
-        Vehicle maxVehicle = Collections.max(vehicles);
-        if (vehicle.compareTo(maxVehicle) > 0) {
-            vehicles.add(vehicle);
+        Optional<Vehicle> o = this.collection
+                .stream()
+                .max(Comparator.comparing(Vehicle::getName));
+        if (o.isEmpty() || o.get().compareTo(vehicle) < 0) {
+            vehicle.setId(this.generateId());
+            this.collection.add(vehicle);
         }
     }
 
     public void addIfMin(Vehicle vehicle) {
-        List<Vehicle> vehicles = new ArrayList<>();
-        Vehicle minVehicle = Collections.min(vehicles);
-        if (vehicle.compareTo(minVehicle) > 0) {
-            this.collection.add(minVehicle);
+        Optional<Vehicle> o = this.collection
+                .stream()
+                .min(Comparator.comparing(Vehicle::getName));
+        if (o.isEmpty() || o.get().compareTo(vehicle) > 0) {
+            vehicle.setId(this.generateId());
+            this.collection.add(vehicle);
         }
     }
 
