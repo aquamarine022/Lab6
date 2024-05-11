@@ -17,8 +17,12 @@ public class RemoveHead extends Command{
     public Response execute(Request request){
         try {
             var req = (RemoveHeadRequest) request;
-            collectionManager.removeHead();
-            return new RemoveHeadResponse(null);
+            if (collectionManager.getCollection().isEmpty()){
+                return new RemoveHeadResponse("коллекция пуста");
+            }else {
+                collectionManager.removeHead();
+                return new RemoveHeadResponse(null);
+            }
         }catch (Exception e){
             return new RemoveHeadResponse(e.getMessage());
         }

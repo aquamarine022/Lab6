@@ -18,8 +18,12 @@ public class Update extends Command{
     public Response execute(Request request) {
         try {
             var req = (UpdateByIdRequest) request;
-            collectionManager.update(req.getId(),req.getVehicle());
-            return new UpdateByIdResponse(null);
+            if(!collectionManager.containsId(req.getId())) {
+                return new UpdateByIdResponse("Транспорта с таким ID не существует");
+            } else {
+                collectionManager.update(req.getId(), req.getVehicle());
+                return new UpdateByIdResponse(null);
+            }
         } catch (Exception e) {
             return new UpdateByIdResponse(e.toString());
         }

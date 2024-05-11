@@ -126,6 +126,7 @@ public class CollectionManager {
     }
 
     public List<Vehicle> getStartsWithName(String name){
-        return this.collection.stream().filter(vehicle ->vehicle.getName().startsWith(name)).toList();
+        return this.collection.stream().filter(
+                vehicle ->vehicle.getName().startsWith(name)).toList();
     }
 }

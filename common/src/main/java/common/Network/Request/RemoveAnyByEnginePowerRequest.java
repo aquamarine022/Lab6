@@ -9,7 +9,7 @@ public class RemoveAnyByEnginePowerRequest extends Request {
         this.enginePower = enginePower;
     }
 
-    public long getEnginePower() {
+    public int getEnginePower() {
         return enginePower;
     }
 }

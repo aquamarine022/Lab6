@@ -54,9 +54,13 @@ public class Main {
         commandManager.createCommand(new AddIfMax(collectionManager));
         commandManager.createCommand(new AddIfMin(collectionManager));
         commandManager.createCommand(new Clear(collectionManager));
+        commandManager.createCommand(new MinByName(collectionManager));
         commandManager.createCommand(new RemoveHead(collectionManager));
+        commandManager.createCommand(new RemoveById(collectionManager));
+        commandManager.createCommand(new RemoveByEnginePower(collectionManager));
         commandManager.createCommand(new Help(commandManager));
         commandManager.createCommand(new Info(collectionManager));
+        commandManager.createCommand(new FilterStartsWithName(collectionManager));
         commandManager.createCommand(new Show(collectionManager));
         commandManager.createCommand(new Update(collectionManager));
 

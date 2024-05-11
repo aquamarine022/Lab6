@@ -11,7 +11,7 @@ public enum Commands {
     HELP("help"),
     INFO("info"),
     MIN_BY_NAME("min_by_name"),
-    REMOVE_ANY_BY_ENGINE_POWER("remove_any_by_engine_power"),
+    REMOVE_ANY_BY_ENGINE_POWER("remove_by_engine_power"),
     REMOVE_BY_ID("remove_by_id"),
     REMOVE_HEAD("remove_head"),
     SAVE("save"),

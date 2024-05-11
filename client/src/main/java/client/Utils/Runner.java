@@ -29,9 +29,13 @@ public class Runner {
             put(Commands.ADD_IF_MIN.getName(), new AddIfMinCommand(console,clientManager));
             put(Commands.CLEAR.getName(), new ClearCommand(console,clientManager));
             put(Commands.EXECUTE_SCRIPT.getName(), new ExecuteScriptCommand(console));
+            put(Commands.MIN_BY_NAME.getName(), new MinByNameCommand(console,clientManager));
             put(Commands.HELP.getName(), new HelpCommand(console,clientManager));
             put(Commands.INFO.getName(), new InfoCommand(console,clientManager));
+            put(Commands.FILTER_STARTS_WITH_NAME.getName(), new FilterStartsWithNameCommand(console,clientManager));
             put(Commands.REMOVE_HEAD.getName(), new RemoveHeadCommand(console,clientManager));
+            put(Commands.REMOVE_BY_ID.getName(), new RemoveByIdCommand(console,clientManager));
+            put(Commands.REMOVE_ANY_BY_ENGINE_POWER.getName(), new RemoveAnyByEnginePowerCommand(console,clientManager));
             put(Commands.SHOW.getName(), new ShowCommand(console, clientManager));
             put(Commands.UPDATE_BY_ID.getName(), new UpdateByIdCommand(console,clientManager));
         }};
